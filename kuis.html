@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis: Bilangan Positif dan Negatif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .solution {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #4caf50;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kuis: Bilangan Positif dan Negatif</h1>
+
+    <div class="quiz-container">
+        <h2>Pilih Jawaban yang Benar</h2>
+
+        <form id="quizForm">
+            <div class="question">
+                <label for="q1">1. Berapa hasil dari 7 + (-4)?</label>
+                <input type="text" id="q1" placeholder="Tulis Jawaban Anda">
+            </div>
+
+            <div class="question">
+                <label for="q2">2. Berapa hasil dari -5 + (-3)?</label>
+                <input type="text" id="q2" placeholder="Tulis Jawaban Anda">
+            </div>
+
+            <div class="question">
+                <label for="q3">3. Berapa hasil dari 10 - 15?</label>
+                <input type="text" id="q3" placeholder="Tulis Jawaban Anda">
+            </div>
+
+            <div class="question">
+                <label for="q4">4. Berapa hasil dari -2 × 5?</label>
+                <input type="text" id="q4" placeholder="Tulis Jawaban Anda">
+            </div>
+
+            <div class="question">
+                <label for="q5">5. Berapa hasil dari -12 ÷ -4?</label>
+                <input type="text" id="q5" placeholder="Tulis Jawaban Anda">
+            </div>
+
+            <button type="button" class="submit-btn" onclick="submitQuiz()">Kirim Jawaban</button>
+        </form>
+
+        <div id="result" class="result"></div>
+        <div id="solutions" class="solution" style="display: none;">
+            <h3>Penyelesaian:</h3>
+            <p><strong>1. 7 + (-4) = 3</strong><br> 
+               Penjelasan: Bilangan bulat positif 7 ditambah bilangan bulat negatif -4 menghasilkan 3.
+            </p>
+            <p><strong>2. -5 + (-3) = -8</strong><br> 
+               Penjelasan: Penjumlahan dua bilangan negatif menghasilkan bilangan negatif, yaitu -8.
+            </p>
+            <p><strong>3. 10 - 15 = -5</strong><br> 
+               Penjelasan: Pengurangan bilangan positif 10 dengan bilangan positif 15 menghasilkan bilangan negatif, yaitu -5.
+            </p>
+            <p><strong>4. -2 × 5 = -10</strong><br> 
+               Penjelasan: Perkalian bilangan negatif -2 dengan bilangan positif 5 menghasilkan bilangan negatif, yaitu -10.
+            </p>
+            <p><strong>5. -12 ÷ -4 = 3</strong><br> 
+               Penjelasan: Pembagian dua bilangan negatif menghasilkan bilangan positif, yaitu 3.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            const correctAnswers = ['3', '-8', '-5', '-10', '3']; // Jawaban yang benar
+            let score = 0;
+            const userAnswers = [
+                document.getElementById('q1').value.trim(),
+                document.getElementById('q2').value.trim(),
+                document.getElementById('q3').value.trim(),
+                document.getElementById('q4').value.trim(),
+                document.getElementById('q5').value.trim(),
+            ];
+
+            // Periksa jawaban pengguna
+            for (let i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] === correctAnswers[i]) {
+                    score++;
+                }
+            }
+
+            // Tampilkan hasil
+            const resultElement = document.getElementById('result');
+            const solutionElement = document.getElementById('solutions');
+            if (score === correctAnswers.length) {
+                resultElement.innerHTML = `<p>Selamat! Anda mendapatkan skor penuh: ${score}/${correctAnswers.length}</p>`;
+                resultElement.style.color = 'green';
+            } else {
+                resultElement.innerHTML = `<p>Anda mendapatkan skor: ${score}/${correctAnswers.length}</p>`;
+                resultElement.style.color = 'red';
+            }
+
+            // Menampilkan penyelesaian
+            solutionElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
